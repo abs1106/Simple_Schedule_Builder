@@ -1,17 +1,5 @@
 import { useState } from 'react'
 
-const App = () => {
-
-const [courseName, setCourseName] = useState<string>(''); // empty string for course name
-//courseName is the current value the vairbale, setCourseName is the function that changs the value, 
-
-const[ selectedDay, setSelectedDay] = useState<string>('weekday'); // empty string for selected day. 
-
-const[ startTime, setStartTime] = useState<string>('');
-const[ endTime, setEndTime] = useState<string>('');
-
-const [ scheduleItem , setScheduleItem] = useState<ScheduleItemType | null>(null); // schedule item is either null or an object that has the properties of ScheduleItemType
-
 type ScheduleItemType = { // schedule item must be an object that has the following properties
   courseName: string;
   selectedDay: string;
@@ -19,14 +7,47 @@ type ScheduleItemType = { // schedule item must be an object that has the follow
   endTime: string;
 };
 
+const times = [
+  "8:00 AM",
+  "8:30 AM",
+  "9:00 AM",
+  "9:30 AM",
+  "10:00 AM",
+  "10:30 AM",
+  "11:00 AM",
+  "11:30 AM",
+  "12:00 PM",
+  "12:30 PM",
+  "1:00 PM",
+  "1:30 PM",
+  "2:00 PM",
+  "2:30 PM",
+  "3:00 PM",
+  "3:30 PM",
+  "4:00 PM",
+  "4:30 PM",
+  "5:00 PM",
+  "5:30 PM",
+   "6:00 PM",
+   "6:30 PM",
+   "7:00 PM",
+   "7:30 PM",
+   "8:00 PM",
+   "8:30 PM"
+]
 
-// type CourseType = {  //CourseType must be an object that has a property callled courseName that is a string
-//   courseName: string;
-// };
 
+const App = () => {
 
+const [courseName, setCourseName] = useState<string>(''); // empty string for course name
+//courseName is the current value the vairbale, setCourseName is the function that changs the value, 
 
+const[ selectedDay, setSelectedDay] = useState<string>(''); // empty string for selected day. 
 
+const[ startTime, setStartTime] = useState<string>('');
+const[ endTime, setEndTime] = useState<string>('');
+
+const [ scheduleItem , setScheduleItem] = useState<ScheduleItemType | null>(null); // schedule item is either null or an object that has the properties of ScheduleItemType
 
   return<>
 
@@ -44,16 +65,6 @@ type ScheduleItemType = { // schedule item must be an object that has the follow
     } />
 
     
-
-    {/* <input placeholder='e.g. weekday'  
-    value = {selectedDay}
-    onChange= {(event) => {
-      const newSelectedDay = event.target.value;
-      setSelectedDay(newSelectedDay);
-      
-
-    }} /> */}
-    
 <select className =" day-dropdown" value={selectedDay} onChange={(event) => {
   const newSelectedDay = event.target.value;
   setSelectedDay(newSelectedDay);
@@ -66,75 +77,34 @@ type ScheduleItemType = { // schedule item must be an object that has the follow
     <option className = "weeday"> Saturday </option>
     <option className = "weeday"> Sunday </option>
 </select>
-    
-    <select className =" start-time-dropdown" >
-     <option className = "start-time"> 8:00 AM </option>
-     <option className = "start-time"> 8:30 AM </option>
-     <option className = "start-time"> 9:00 AM </option>
-     <option className = "start-time"> 9:30 AM </option>
-     <option className = "start-time"> 10:00 AM </option>
-     <option className = "start-time"> 10:30 AM </option>
-     <option className = "start-time"> 11:00 AM </option>
-     <option className = "start-time"> 11:30 AM </option>
-     <option className = "start-time"> 12:00 PM </option>
-     <option className = "start-time"> 12:30 PM </option>
-     <option className = "start-time"> 1:00 PM </option>
-     <option className = "start-time"> 1:30 PM </option>
-     <option className = "start-time"> 2:00 PM </option>
-     <option className = "start-time"> 2:30 PM </option>
-     <option className = "start-time"> 3:00 PM </option>
-     <option className = "start-time"> 3:30 PM </option>
-     <option className = "start-time"> 4:00 PM </option>
-     <option className = "start-time"> 4:30 PM </option>
-     <option className = "start-time"> 5:00 PM </option>
-     <option className = "start-time"> 5:30 PM </option>
-      <option className = "start-time"> 6:00 PM </option>
-      <option className = "start-time"> 6:30 PM </option>
-      <option className = "start-time"> 7:00 PM </option>
-      <option className = "start-time"> 7:30 PM </option>
-      <option className = "start-time"> 8:00 PM </option>
-      <option className = "start-time"> 8:30 PM </option>
-    </select>
 
-    <select className =" end-time-dropdown" >
-     <option className = "start-time"> 8:00 AM </option>
-     <option className = "start-time"> 8:30 AM </option>
-     <option className = "start-time"> 9:00 AM </option>
-     <option className = "start-time"> 9:30 AM </option>
-     <option className = "start-time"> 10:00 AM </option>
-     <option className = "start-time"> 10:30 AM </option>
-     <option className = "start-time"> 11:00 AM </option>
-     <option className = "start-time"> 11:30 AM </option>
-     <option className = "start-time"> 12:00 PM </option>
-     <option className = "start-time"> 12:30 PM </option>
-     <option className = "start-time"> 1:00 PM </option>
-     <option className = "start-time"> 1:30 PM </option>
-     <option className = "start-time"> 2:00 PM </option>
-     <option className = "start-time"> 2:30 PM </option>
-     <option className = "start-time"> 3:00 PM </option>
-     <option className = "start-time"> 3:30 PM </option>
-     <option className = "start-time"> 4:00 PM </option>
-     <option className = "start-time"> 4:30 PM </option>
-     <option className = "start-time"> 5:00 PM </option>
-     <option className = "start-time"> 5:30 PM </option>
-      <option className = "start-time"> 6:00 PM </option>
-      <option className = "start-time"> 6:30 PM </option>
-      <option className = "start-time"> 7:00 PM </option>
-      <option className = "start-time"> 7:30 PM </option>
-      <option className = "start-time"> 8:00 PM </option>
-      <option className = "start-time"> 8:30 PM </option>
+
+    
+    <select className =" start-time-dropdown"  value={startTime} onChange={(event) => {
+      const newStartTime = event.target.value;
+      setStartTime(newStartTime);
+    }}>
+      {times.map((time) => <option key={time} className = "start-time">{time}</option>) };  {/*for each time in the times array, create an option element with the time as the text*/
+
+}</select>
+
+    <select className =" end-time-dropdown"  value={endTime} onChange={(event) => {
+      const newEndTime = event.target.value;
+      setEndTime(newEndTime);
+    }}  >
+     {times.map((time) => <option key={time} className = "start-time">{time}</option>) };
     </select>
   
 <button  className= 'add-course-btn' type='submit' onClick={() => {
-    setScheduleItem(courseName + " " + selectedDay + " " + startTime + " " + endTime); // when the user clicks the button, set the schedule item to be a string that has the course name, selected day, start time, and end time
-
+    setScheduleItem(courseName + "\n " + selectedDay + " " + startTime + " " + endTime); // when the user clicks the button, set the schedule item to be a string that has the course name, selected day, start time, and end time
+  
   }}>
     + Add Course
       </button>
 
 </div>
 
-<h1 className = "your-course-title"> Your Courses </h1>
+<h2 className = "your-course-title"> Your Courses </h2>
 {scheduleItem}
     
 </>
