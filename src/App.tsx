@@ -40,6 +40,8 @@ const times = [
 const App = () => {
 
 const [courseName, setCourseName] = useState<string>(''); // empty string for course name
+
+
 //courseName is the current value the vairbale, setCourseName is the function that changs the value, 
 
 const[ selectedDay, setSelectedDay] = useState<string>(''); // empty string for selected day. 
@@ -49,6 +51,26 @@ const[ endTime, setEndTime] = useState<string>('');
 
 const [ scheduleItem , setScheduleItem] = useState<ScheduleItemType[]>([]); // schedule item is either null or an object that has the properties of ScheduleItemType
 
+const handleSubmit =(e)=>{
+  e.preventDefault()
+  
+  const newScheduleItem ={
+    courseName,
+    selectedDay,
+    startTime,
+    endTime
+
+  }
+   setScheduleItem(( prevScheduleItem ) =>[
+      ...prevScheduleItem,
+        newScheduleItem
+      
+    ])
+    setCourseName("")
+    setSelectedDay("")
+    setStartTime("")
+    setEndTime("")
+} 
   return<>
 
   <h1 className = "header-title">Schedule Builder</h1>
@@ -67,8 +89,7 @@ const [ scheduleItem , setScheduleItem] = useState<ScheduleItemType[]>([]); // s
  
  }
 
-  <form onSubmit={(event) => {
-            event.preventDefault();}}>
+  <form onSubmit={handleSubmit}>
   <div>
     <label className="label-course" htmlFor='courseName'>Course Name: </label>
 
@@ -116,10 +137,7 @@ const [ scheduleItem , setScheduleItem] = useState<ScheduleItemType[]>([]); // s
      {times.map((time) => <option key={time} className = "start-time">{time}</option>) };
     </select>
   
-<button  className= 'add-course-btn' type='submit' onClick={() => {
-    setScheduleItem({ courseName, selectedDay, startTime, endTime }); // when the user clicks the button, set the schedule item to be an object that has the course name, selected day, start time, and end time
-  
-  }}>
+<button  className= 'add-course-btn' type='submit' >
     + Add Course
       </button>
       </div>
